@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> All HTML Elements in ONE </title>
+</head>
+<body>
+    <header>
+      <!-- the header section of a web -->
+      <nav> 
+        <!-- The nav element defines a set of navigation links: -->
+        <p>HEADER</p>
+        <!-- The <menu> HTML element is described in the HTML specification as a semantic alternative to <ul> , but treated by browsers (and exposed through the accessibility tree) as no different than <ul> -->
+        <menu type="context" id="navmenu">
+          <menuitem label="Home"> <a href="#">Home</a> </menuitem>
+          <!-- "#" link to the top of the current page-->
+        </menu>
+      </nav>
+    </header>
