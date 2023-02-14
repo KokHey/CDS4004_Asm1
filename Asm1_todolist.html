@@ -1,0 +1,153 @@
+<html lang="en">
+
+
+<head>
+	<style>	
+		/*write your css rules here*/
+		
+    body{
+      background-color:#FAC898;
+    }
+    
+		textarea {
+		  width:100%;
+      font-family: Times New Roman;
+      font-size:20px;
+		}
+
+		li {
+			font-size: 30px;
+      font-family: Times New Roman;
+		}
+    
+    li:hover{
+      background-color:beige;
+    }
+		
+    button {
+      font-family:Lucida Console; 
+      background-color: azure;
+      border-radius: 12px;
+      border-color:azure;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      color:chocolate;
+      margin:10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      align-content:center;
+      
+    }
+    
+    .divButton{
+      margin-left:35%;
+    }
+    
+    
+    
+	</style>
+</head>
+
+<body>
+	<textarea id='text' rows="3"></textarea> 
+	<br/>
+  <br/>
+	<div class='divButton'>
+		<button id='btn_add'>Add</button>
+		<button id='btn_hide'>Toggle</button>
+	</div>
+  <h2 style="color:chocolate;text-decoration:underline">To-do List</h2>
+	<ol id='order_list'>
+	</ol>	
+</body>
+
+	<script>
+		
+    //add function
+    add = document.getElementById('btn_add');
+    toggle = document.getElementById('btn_hide');
+    
+    
+    
+    add.onclick = addFunction;
+    function addFunction(){
+      orderList = document.querySelector('#order_list');
+      text = document.getElementById('text').value;
+      
+      if(text == "") {
+        alert('Input value should not be blank!');
+      } else {
+        splitText = text.split(';');
+        
+        for (i=0; i<splitText.length; i++){  
+          li = document.createElement('li');
+          li.setAttribute('class', 'list');
+          orderList.appendChild(li);
+          content = splitText[i];
+          li.append(content.split(',')[0]);
+          
+        
+        //color by category
+        category = splitText[i].slice(-3);
+        //category.style.display = 'none';
+        if(splitText[i].slice(-1)=='1'){    
+          //splitText[i].slice(-2).style.display='block';
+          li.style.color='red';
+        } else if(splitText[i].slice(-1)=='2'){
+          //splitText[i].slice(-2).style.display='block';
+          li.style.color='black';
+        } else{
+          //splitText[i].slice(-2).style.display='block';
+          li.style.color='grey';
+        }
+        
+        
+        
+           
+      //Double click to remove a task
+        li.addEventListener('dblclick', function(e) {
+        //confirm window
+          removeConfirm = ('Are you sure to remove the task?');
+          if (confirm(removeConfirm) == true){
+            orderList.removeChild(e.target);
+          }
+          
+        })
+    
+      //click for completed task
+        li.addEventListener('click',function (e){
+          target = e.target;
+          if(target.classList.contains('list')){
+            target.setAttribute('class','done');
+            target.style.textDecoration = 'line-through';
+          } else {
+            target.setAttribute('class','list');
+            target.style.textDecoration = 'none';
+          }
+        }) //completed task
+        } //for loop
+      } //else
+    } //addFunction
+    
+    
+    //toggle button
+    toggle.onclick = hideFunction
+    function hideFunction(){
+      hide = document.querySelectorAll('.done');
+      show = document.querySelectorAll('.hidden');
+      
+      for (i=0; i<hide.length; i++){
+        hide[i].style.display = 'none';
+        hide[i].setAttribute('class','hidden');
+      }
+      
+      for (j=0; j<show.length; j++){
+        show[j].style.display = '';
+        show[j].setAttribute('class','done');
+      }
+      
+    }
+      
+	</script>
+</html>
+
